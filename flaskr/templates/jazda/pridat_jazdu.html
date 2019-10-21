@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Pridat jazdu{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="start">Start</label>
+<!--    <input name="start" id="start" value="{{ request.form['start'] }}" required>-->
+    <select name="start" id="start" method="GET" action="/">
+      <option value="start" selected>{{stops[0]}}</option>
+      {% for stop in stops[1:] %}
+        <option value="{{stop}}">{{stop}}</option>
+      {% endfor %}
+    </select>
+    <label for="ciel">Ciel</label>
+<!--    <input name="ciel" id="ciel" value="{{ request.form['ciel'] }}" required>-->
+    <select name="ciel" id="ciel" method="GET" action="/">
+      <option value="ciel" selected>{{stops[0]}}</option>
+      {% for stop in stops[1:] %}
+        <option value="{{stop}}">{{stop}}</option>
+      {% endfor %}
+    </select>
+    <label for="trvanie">Trvanie</label>
+    <input name="trvanie" id="trvanie" value="{{ request.form['trvanie'] }}" required>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

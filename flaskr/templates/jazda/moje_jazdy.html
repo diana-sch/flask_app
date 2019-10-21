@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}MOJE JAZDY{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('jazda.pridat_jazdu') }}">Pridat jazdu</a>
+  {% endif %}
+{% endblock %}
+
+
+{% block content %}
+  {% for jazda in jazdy %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ jazda['id'] }}</h1>
+          <div class="body">z <strong>{{ jazda['start'] }}</strong> do <strong>{{ jazda['ciel']}}</strong></div>
+<!--          about-->
+        </div>
+
+      </header>
+      <p class="about">trvanie: {{ jazda['trvanie'] }} času</p>
+<!--      body-->
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+<!--  {% for stop in stops %}-->
+<!--      <p>{{ stop }} </p>-->
+<!--  {% endfor %}-->
+{% endblock %}
